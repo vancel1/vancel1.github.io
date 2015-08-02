@@ -1,0 +1,500 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>XTerm 下运行 Emacs | vancel1&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="vancel1">
+    
+
+    
+    <meta name="description" content="最近转投到 chakra 下（已回到 debian 了），感觉 KDE 4.8 真心的快。可是安装 emacs 都要 bundle 这一点让我觉得很逼催，于是装了emacs-nox。问题是在 konsole 下 emacs 的 color theme 不听话了，在 XTerm 下设置一下问题解决，还把等宽字体的问题解决了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XTerm 下运行 Emacs">
+<meta property="og:url" content="http://vancel1.info/2012/02/23/running-emacs-under-xterm.html/index.html">
+<meta property="og:site_name" content="vancel1's blog">
+<meta property="og:description" content="最近转投到 chakra 下（已回到 debian 了），感觉 KDE 4.8 真心的快。可是安装 emacs 都要 bundle 这一点让我觉得很逼催，于是装了emacs-nox。问题是在 konsole 下 emacs 的 color theme 不听话了，在 XTerm 下设置一下问题解决，还把等宽字体的问题解决了。">
+<meta property="og:updated_time" content="2014-07-28T03:18:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XTerm 下运行 Emacs">
+<meta name="twitter:description" content="最近转投到 chakra 下（已回到 debian 了），感觉 KDE 4.8 真心的快。可是安装 emacs 都要 bundle 这一点让我觉得很逼催，于是装了emacs-nox。问题是在 konsole 下 emacs 的 color theme 不听话了，在 XTerm 下设置一下问题解决，还把等宽字体的问题解决了。">
+<meta name="twitter:creator" content="@vance_l1">
+
+    
+    <link rel="alternative" href="/atom.xml" title="vancel1&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="vancel1&#39;s blog" title="vancel1&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="vancel1&#39;s blog">vancel1&#39;s blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:vancel1.info">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2012/02/23/running-emacs-under-xterm.html/" title="XTerm 下运行 Emacs" itemprop="url">XTerm 下运行 Emacs</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="vancel1" target="_blank" itemprop="author">vancel1</a>
+		
+  <p class="article-time">
+    <time datetime="2012-02-22T16:00:00.000Z" itemprop="datePublished"> 发表于 Feb 23 2012</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>最近转投到 chakra 下（已回到 debian 了），感觉 KDE 4.8 真心的快。可是安装 emacs 都要 bundle 这一点让我觉得很逼催，于是装了emacs-nox。问题是在 konsole 下 emacs 的 color theme 不听话了，在 XTerm 下设置一下问题解决，还把等宽字体的问题解决了。<br><a id="more"></a><br><strong>xterm的设置</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">! Xft settings --------------</span><br><span class="line">Xft<span class="class">.dpi</span>: <span class="number">96</span></span><br><span class="line">Xft<span class="class">.lcdfilter</span>: lcddefault</span><br><span class="line">Xft<span class="class">.autohint</span>: false</span><br><span class="line">Xft<span class="class">.hinting</span>: true</span><br><span class="line">Xft<span class="class">.hintstyle</span>: hintslight</span><br><span class="line">Xft<span class="class">.antialias</span>: true</span><br><span class="line">Xft<span class="class">.rgba</span>: rgb</span><br><span class="line"></span><br><span class="line">!<span class="attribute">font</span> and locale</span><br><span class="line">xterm*locale: true</span><br><span class="line">xterm*utf8: true</span><br><span class="line">xterm*utf8Title: true</span><br><span class="line">xterm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=<span class="number">14</span></span><br><span class="line">xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono:antialias=True:pixelsize=<span class="number">14</span></span><br><span class="line">xterm*xftAntialias: true</span><br><span class="line">xterm*cjkWidth: false</span><br><span class="line"></span><br><span class="line">!look and feel</span><br><span class="line">xterm*termName: xterm-<span class="number">256</span>color</span><br><span class="line">xterm*VT100<span class="class">.geometry</span>:<span class="number">80</span>x25</span><br><span class="line">xterm*scrollBar: false</span><br><span class="line">xterm*cursorBlink: false</span><br><span class="line">xterm*toolBar: false</span><br><span class="line">xterm*<span class="attribute">background</span>: <span class="hexcolor">#003344</span></span><br><span class="line">xterm*foreground: <span class="hexcolor">#d7d7d7</span></span><br><span class="line">xterm*cursorColor: green</span><br><span class="line"></span><br><span class="line">! terminal colors</span><br><span class="line">! tangoesque scheme</span><br><span class="line">!*<span class="attribute">background</span>: <span class="hexcolor">#111111</span></span><br><span class="line">!*foreground: <span class="hexcolor">#babab6</span></span><br><span class="line">! Black (not tango) + DarkGrey</span><br><span class="line">*color0:  <span class="hexcolor">#000000</span></span><br><span class="line">*color8:  <span class="hexcolor">#555753</span></span><br><span class="line">! DarkRed + Red</span><br><span class="line">*color1:  <span class="hexcolor">#ff6565</span></span><br><span class="line">*color9:  <span class="hexcolor">#ff8d8d</span></span><br><span class="line">! DarkGreen + Green</span><br><span class="line">*color2:  <span class="hexcolor">#93d44f</span></span><br><span class="line">*color10: <span class="hexcolor">#c8e7a8</span></span><br><span class="line">! DarkYellow + Yellow</span><br><span class="line">*color3:  <span class="hexcolor">#eab93d</span></span><br><span class="line">*color11: <span class="hexcolor">#ffc123</span></span><br><span class="line">! DarkBlue + Blue</span><br><span class="line">*color4:  <span class="hexcolor">#204a87</span></span><br><span class="line">*color12: <span class="hexcolor">#3465a4</span></span><br><span class="line">! DarkMagenta + Magenta</span><br><span class="line">*color5:  <span class="hexcolor">#ce5c00</span></span><br><span class="line">*color13: <span class="hexcolor">#f57900</span></span><br><span class="line">!DarkCyan + Cyan (both not tango)</span><br><span class="line">*color6:  <span class="hexcolor">#89b6e2</span></span><br><span class="line">*color14: <span class="hexcolor">#46a4ff</span></span><br><span class="line">! LightGrey + White</span><br><span class="line">*color7:  <span class="hexcolor">#cccccc</span></span><br><span class="line">*color15: <span class="hexcolor">#ffffff</span></span><br></pre></td></tr></table></figure>
+<p>保存后运行：</p>
+<p>xrdb -merge ~/.Xresources</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/emacs/">emacs</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/emacs/">emacs</a><a href="/tags/xterm/">xterm</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://vancel1.info/2012/02/23/running-emacs-under-xterm.html/" data-title="XTerm 下运行 Emacs | vancel1&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2012/06/24/emacs-24-color-theme-setting.html/" title="Emacs 24 的主题设置">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Emacs 24 的主题设置</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2012/02/23/running-emacs-under-xterm.html/" data-title="XTerm 下运行 Emacs" data-url="http://vancel1.info/2012/02/23/running-emacs-under-xterm.html/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/coffee/" title="coffee">coffee<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/emacs/" title="emacs">emacs<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/emacs/" title="emacs">emacs<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/coffee/" title="coffee">coffee<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/手冲/" title="手冲">手冲<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分区/" title="分区">分区<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/地狱狂蛇2014/" title="地狱狂蛇2014">地狱狂蛇2014<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/无线/" title="无线">无线<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ntfs/" title="ntfs">ntfs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/xterm/" title="xterm">xterm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/鼠标/" title="鼠标">鼠标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/debian/" title="debian">debian<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/字体设置/" title="字体设置">字体设置<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">七月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">八月 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">六月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">二月 2012</a><span class="archive-list-count">1</span></li></ul>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		<a href="https://twitter.com/vance_l1" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="vancel1">vancel1</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"vancel1"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-53303315-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
