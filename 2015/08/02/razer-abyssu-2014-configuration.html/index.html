@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="最近买了个灯厂的鼠标，linux 下可以驱动，就是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
+    <meta name="description" content="最近买了个灯厂的鼠标，linux 下插上就可以用了，问题是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="地狱狂蛇2014 linux 下的设置">
 <meta property="og:url" content="http://vancel1.info/2015/08/02/razer-abyssu-2014-configuration.html/index.html">
 <meta property="og:site_name" content="vancel1's blog">
-<meta property="og:description" content="最近买了个灯厂的鼠标，linux 下可以驱动，就是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
+<meta property="og:description" content="最近买了个灯厂的鼠标，linux 下插上就可以用了，问题是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
 <meta property="og:image" content="http://vancel1.info/img/xinput1.jpg">
 <meta property="og:image" content="http://vancel1.info/img/xinput2.jpg">
-<meta property="og:updated_time" content="2015-08-02T07:10:00.000Z">
+<meta property="og:updated_time" content="2015-08-02T07:52:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="地狱狂蛇2014 linux 下的设置">
-<meta name="twitter:description" content="最近买了个灯厂的鼠标，linux 下可以驱动，就是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
+<meta name="twitter:description" content="最近买了个灯厂的鼠标，linux 下插上就可以用了，问题是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。">
 <meta name="twitter:creator" content="@vance_l1">
 
     
@@ -103,13 +103,13 @@
 		
 		</div>
 		
-		<p>最近买了个灯厂的鼠标，linux 下可以驱动，就是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。<a id="more"></a></p>
-<p>谷歌大法后，发现可以在命令行改 xinput 设置的，方法如下：</p>
-<p>命令行输入 <code>xinput list</code>，找到你的鼠标的 device id</p>
+		<p>最近买了个灯厂的鼠标，linux 下插上就可以用了，问题是飘得有点蛋疼。windows 下这个鼠标的 dpi 是要到驱动里调的，而在 linux 下就连 razercfg 这个第三方驱动的支持列表里我也没有找到地狱狂蛇。<a id="more"></a></p>
+<p>谷歌大法后，发现可以折中地在命令行改 xinput 设置，方法如下：</p>
+<p>命令行输入： <code>xinput list</code>，找到你的鼠标的 device id</p>
 <p><img src="/img/xinput1.jpg" alt="xinput list"></p>
-<p>在我这里，我的鼠标的 device id 是 <strong>8</strong>，根据你的实际情况而定。然后输入 <code>xinput list-props &lt;你的 device id&gt;</code> 查看当前的设置：</p>
+<p>在我这里，我的鼠标的 device id 是 <strong>8</strong>，根据你的实际情况而定。然后输入： <code>xinput list-props &lt;你的 device id&gt;</code> 查看当前的设置：</p>
 <p><img src="/img/xinput2.jpg" alt="xinput list props"></p>
-<p>找到 <code>Device Accel Constant Deceleration (263)</code> 这一项，记下括号里的数字（property id)，后面的值越大表示速度越慢，例如我这里默认是 1.0 ，试了几次后我觉得 1.8 最适合我。命令行输入形如 <code>xinput set-prop &lt;你的 device id&gt; &lt;property id&gt; &lt;value&gt;</code> ：</p>
+<p>找到 <code>Device Accel Constant Deceleration (263)</code> 这一项，记下括号里的数字（property id)。冒号后面的值越大表示速度越慢，例如我这里默认是 1.0 ，试了几次后我把它设置为 1.8 。命令行输入形如： <code>xinput set-prop &lt;你的 device id&gt; &lt;property id&gt; &lt;value&gt;</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xinput <span class="built_in">set</span>-prop <span class="number">8</span> <span class="number">263</span> <span class="number">1.8</span></span><br></pre></td></tr></table></figure>
 <p>想要保留设置的话，在 ~/.xinputrc (没有的话自己新建) 里加入上面那一行设置就可以了。</p>
   
